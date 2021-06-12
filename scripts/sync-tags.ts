@@ -41,7 +41,7 @@ function parse (category: Category, html: string): ParsedResult<Category> {
   const tags = $('div#tag-container a.tag').map((_, tag) => {
     const id = $(tag).attr('class')!.split(' ')[1].replace('tag-', '')
     const name = $('span.name', tag).text()
-    const count = $('span.count', tag).text()
+    const count = $('span.count', tag).text().toLowerCase()
     return <Tag> {
       id: parseInt(id),
       name,
