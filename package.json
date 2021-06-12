@@ -1,0 +1,57 @@
+{
+  "name": "@l2studio/nhentai-tags",
+  "version": "0.1.0",
+  "description": "A library for nhentai.net tags",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/l2studio/nhentai-tags.git",
+  "author": "lgou2w <lgou2w@hotmail.com>",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=12.0"
+  },
+  "scripts": {
+    "clean": "rimraf build dist",
+    "dev": "vite --port=8091",
+    "sync:tags": "cross-env DEBUG='lgou2w:*' ts-node -T -P tsconfig.json scripts/sync-tags.ts",
+    "build:tags": "cross-env DEBUG='lgou2w:*' ts-node -T -P tsconfig.json scripts/build-tags.ts",
+    "build": "npm run build:tags && tsc",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "l2studio",
+    "lgou2w",
+    "nhentai-tag",
+    "nhentai",
+    "hentai",
+    "hentai-tag",
+    "r18",
+    "r18-tag",
+    "tag"
+  ],
+  "devDependencies": {
+    "@types/file-saver": "^2.0.2",
+    "@types/node": "^15.12.2",
+    "@types/numeral": "^2.0.1",
+    "@types/tunnel": "^0.0.2",
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
+    "cheerio": "^1.0.0-rc.10",
+    "cross-env": "^7.0.3",
+    "debug": "^4.3.1",
+    "dotenv": "^10.0.0",
+    "file-saver": "^2.0.5",
+    "got": "^11.8.2",
+    "numeral": "^2.0.6",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.0.0",
+    "tunnel": "^0.0.6",
+    "typescript": "^4.3.2",
+    "vite": "^2.3.7",
+    "vite-plugin-vue2": "^1.6.2",
+    "vue": "^2.6.14"
+  }
+}
