@@ -22,6 +22,9 @@ type GeneratedTag = {
 }
 
 ;(() => {
+  debug(':read package.json')
+  const pkgFile = path.resolve(__dirname, '..', 'package.json')
+  const { version } = JSON.parse(fs.readFileSync(pkgFile, { encoding: 'utf-8' }))
   debug(':read data')
   const outFile = path.resolve(buildDir, 'index.ts')
   const data = JSON.parse(fs.readFileSync(dataFile, { encoding: 'utf-8' })) as Record<string, string>
@@ -66,6 +69,7 @@ const tags: Record<string, { id: number, text: string }> = {
   ${lines.join(',\n  ')}
 }
 
+export const version = '${version}'
 export const date = new Date('${date}')
 
 export default tags

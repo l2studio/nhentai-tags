@@ -1,5 +1,5 @@
 /*
- * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on 2021-06-13T10:24:57.245Z
+ * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on 2021-06-13T10:55:29.482Z
  */
 
 const tags: Record<string, { id: number, text: string }> = {
@@ -606,6 +606,7 @@ const tags: Record<string, { id: number, text: string }> = {
   zombie: { id: 571, text: '僵尸' }
 }
 
-export const date = new Date('2021-06-13T10:24:57.245Z')
+export const version = '0.1.0'
+export const date = new Date('2021-06-13T10:55:29.482Z')
 
 export default tags
