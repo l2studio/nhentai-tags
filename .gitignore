@@ -120,4 +120,5 @@ dist
 .idea
 !.env
 .env.override
+build
 dist
