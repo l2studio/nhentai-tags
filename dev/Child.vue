@@ -141,15 +141,18 @@ export default {
         return
       }
       this.busy = true
-      const lines: string[] = []
+      const result: Record<string, string> = {}
       for (let i = 0; i < len; i++) {
         const key = window.localStorage.key(i)
         if (!key || !key.startsWith(LS_PREFIX)) continue
         const [, , id] = key.split('-')
-        const value = window.localStorage.getItem(key)
-        lines.push(`  "${id}": "${value}"`)
+        result[id] = window.localStorage.getItem(key)
       }
-      const data = '{\n' + lines.join(',\n') + '\n}\n'
+      const sorted = Object.keys(result).reduce((res, key) => {
+        res[key] = result[key]
+        return res
+      }, {})
+      const data = JSON.stringify(sorted, null, 2)
       const blob = new Blob([data], { type: 'application/json' })
       this.$saveAs(blob, 'nhentai-tags.json')
       this.busy = false
