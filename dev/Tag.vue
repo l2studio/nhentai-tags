@@ -1,9 +1,17 @@
 <template>
-  <div class="tag d-inline-block mr-2 mb-2" style="font-size: 0.725rem"
-       :class="{ 'py-1 px-3 border': !edit, 'bg-success text-white tag-translated': !!translate && !edit }"
-       :data-id="tag.id" :data-text="tag.text">
+  <div class="tag d-inline-block mr-2 mb-2" style="font-size: 0.725rem" :data-id="tag.id" :data-text="tag.text"
+       :class="{
+         'py-1 px-3 border': !edit,
+         'bg-success text-white tag-translated': !!translate && !edit,
+         'text-danger': translate && translate.endsWith('*'), // 未确认，多重翻译，歧义
+         'text-indigo': translate && translate.endsWith('^'), // 原标签语法或拼写错误，或重复单词
+         'tag-low': tag.count <= 10 }">                     <!-- 低优先度或略过，大部分为画师名，自建标签 -->
     <template v-if="!edit">
-      <span>{{ translate || tag.text }}</span>
+      <a v-if="!translate" style="color: inherit; text-decoration: underline"
+         :href="'https://nhentai.net/tag/' + tag.text.replace(/\s/g, '-')" target="_blank">
+        {{ translate || tag.text }}
+      </a>
+      <span v-else>{{ translate || tag.text }}</span>
       <b-icon-pencil-square @click="edit = true"/>
     </template>
     <template v-else>
@@ -71,5 +79,11 @@ export default {
 }
 .tag.tag-translated:hover::before {
   visibility: visible;
+}
+.tag.text-indigo {
+  color: var(--indigo) !important;
+}
+.tag.tag-low a, .tag.tag-low span {
+  border-bottom: var(--danger) 1px dotted !important;
 }
 </style>

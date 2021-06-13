@@ -10,7 +10,7 @@
       <span>总计项目数：{{ totalItems }}</span>
     </div>
     <div class="actions my-4 d-flex">
-      <b-btn class="mr-2" variant="primary" size="sm" @click="sortByCountDesc = false" :disabled="busy">按数量最少</b-btn>
+      <b-btn class="mr-2" variant="primary" size="sm" @click="sortByCountDesc = false" :disabled="busy">按名称排序</b-btn>
       <b-btn variant="danger" size="sm" @click="sortByCountDesc = true" :disabled="busy">重置排序</b-btn>
       <div class="ml-auto"></div>
       <b-btn class="mr-2 btn-import" variant="primary" size="sm" :disabled="busy">
