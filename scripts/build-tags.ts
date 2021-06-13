@@ -66,6 +66,8 @@ const tags: Record<string, { id: number, text: string }> = {
   ${lines.join(',\n  ')}
 }
 
+export const date = new Date('${date}')
+
 export default tags
 `
   fs.writeFileSync(outFile, code)
