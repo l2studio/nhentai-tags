@@ -24,13 +24,15 @@
   "keywords": [
     "l2studio",
     "lgou2w",
-    "nhentai-tag",
+    "nhentai-tags",
     "nhentai",
     "hentai",
-    "hentai-tag",
+    "hentai-tags",
     "r18",
-    "r18-tag",
-    "tag"
+    "r18-tags",
+    "tags",
+    "chinese",
+    "chinese-translation"
   ],
   "devDependencies": {
     "@types/file-saver": "^2.0.2",
