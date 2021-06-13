@@ -65,7 +65,9 @@ type GeneratedTag = {
  * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on ${date}
  */
 
-const tags: Record<string, { id: number, text: string }> = {
+export type Tag = { id: number, text: string }
+
+const tags: Record<string, Tag | undefined> = {
   ${lines.join(',\n  ')}
 }
 

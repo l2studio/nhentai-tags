@@ -1,8 +1,10 @@
 /*
- * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on 2021-06-13T10:55:29.482Z
+ * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on 2021-06-13T11:00:18.450Z
  */
 
-const tags: Record<string, { id: number, text: string }> = {
+export type Tag = { id: number, text: string }
+
+const tags: Record<string, Tag | undefined> = {
   '3d': { id: 80551, text: '3D' },
   abortion: { id: 15959, text: '堕胎' },
   absorption: { id: 15215, text: '吸收' },
@@ -607,6 +609,6 @@ const tags: Record<string, { id: number, text: string }> = {
 }
 
 export const version = '0.1.0'
-export const date = new Date('2021-06-13T10:55:29.482Z')
+export const date = new Date('2021-06-13T11:00:18.450Z')
 
 export default tags
