@@ -1,5 +1,5 @@
 /*
- * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on 2021-06-13T11:00:18.450Z
+ * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on 2021-06-13T11:33:15.444Z
  */
 
 export type Tag = { id: number, text: string }
@@ -101,7 +101,7 @@ const tags: Record<string, Tag | undefined> = {
   catgirl: { id: 31386, text: '猫娘' },
   cbt: { id: 28349, text: '折磨阴茎' },
   centaur: { id: 21259, text: '半人马' },
-  'cervix penetration': { id: 9661, text: '子宫颈穿透' },
+  'cervix penetration': { id: 9661, text: '子宫颈插入' },
   'chastity belt': { id: 3455, text: '贞操带' },
   cheating: { id: 9260, text: '出轨' },
   cheerleader: { id: 25744, text: '啦啦队长' },
@@ -248,8 +248,8 @@ const tags: Record<string, Tag | undefined> = {
   group: { id: 8010, text: '乱交' },
   growth: { id: 18544, text: '巨大化' },
   guro: { id: 27217, text: '肢解' },
-  gyaru: { id: 25050, text: '辣妹*' },
-  'gyaru-oh': { id: 20362, text: '非主流*' },
+  gyaru: { id: 25050, text: '辣妹' },
+  'gyaru-oh': { id: 20362, text: '非主流男' },
   gymshorts: { id: 5452, text: '运动短裤' },
   haigure: { id: 130369, text: '高叉装' },
   'hair buns': { id: 106733, text: '丸子头' },
@@ -336,7 +336,7 @@ const tags: Record<string, Tag | undefined> = {
   menstruation: { id: 31663, text: '经血' },
   mermaid: { id: 26822, text: '美人鱼' },
   merman: { id: 21903, text: '人鱼' },
-  mesuiki: { id: 129321, text: '干高潮*' },
+  mesuiki: { id: 129321, text: '干高潮' },
   'metal armor': { id: 11399, text: '金属盔甲' },
   midget: { id: 12154, text: '侏儒' },
   miko: { id: 6900, text: '巫女' },
@@ -366,7 +366,7 @@ const tags: Record<string, Tag | undefined> = {
   'mouth mask': { id: 124610, text: '口罩' },
   'mtf threesome': { id: 15463, text: '男扶女3P' },
   'multimouth blowjob': { id: 126671, text: '多口口交' },
-  'multipanel sequence': { id: 130380, text: '多面板序列*' },
+  'multipanel sequence': { id: 130380, text: '多面板序列' },
   'multiple arms': { id: 23639, text: '多手臂' },
   'multiple breasts': { id: 4526, text: '多乳房' },
   'multiple handjob': { id: 129048, text: '多重手交' },
@@ -409,11 +409,12 @@ const tags: Record<string, Tag | undefined> = {
   'out of order': { id: 32538, text: '顺序错乱' },
   oyakodon: { id: 50505, text: '母女丼' },
   paizuri: { id: 25614, text: '乳交' },
+  'panda girl': { id: 129131, text: '熊猫女孩' },
   pantyhose: { id: 24380, text: '连裤袜' },
   pantyjob: { id: 7942, text: '胖次交' },
   parasite: { id: 29001, text: '寄生' },
   pasties: { id: 10606, text: '乳贴' },
-  pegging: { id: 5200, text: '爆菊*' },
+  pegging: { id: 5200, text: '假阴茎肛交' },
   'penis birth': { id: 129017, text: '阴茎出产' },
   petplay: { id: 118056, text: '人宠' },
   petrification: { id: 30176, text: '石化' },
@@ -545,7 +546,7 @@ const tags: Record<string, Tag | undefined> = {
   torture: { id: 4549, text: '拷打' },
   tracksuit: { id: 17349, text: '运动服' },
   trampling: { id: 20488, text: '践踏' },
-  transformation: { id: 2531, text: '转型|变身*' },
+  transformation: { id: 2531, text: '变身' },
   tribadism: { id: 30206, text: '磨豆腐' },
   'triple anal': { id: 6303, text: '三插肛门' },
   'triple penetration': { id: 3614, text: '三重插入' },
@@ -572,7 +573,7 @@ const tags: Record<string, Tag | undefined> = {
   vacbed: { id: 24053, text: '真空床' },
   'vaginal sticker': { id: 19354, text: '阴贴' },
   vampire: { id: 7577, text: '吸血鬼' },
-  'variant set': { id: 104291, text: '变体集|差分集*' },
+  'variant set': { id: 104291, text: '差分集' },
   'very long hair': { id: 122908, text: '超长发' },
   virginity: { id: 2515, text: '丧失童贞' },
   vomit: { id: 7288, text: '呕吐' },
@@ -609,6 +610,6 @@ const tags: Record<string, Tag | undefined> = {
 }
 
 export const version = '0.1.0'
-export const date = new Date('2021-06-13T11:00:18.450Z')
+export const date = new Date('2021-06-13T11:33:15.444Z')
 
 export default tags
