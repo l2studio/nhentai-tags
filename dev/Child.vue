@@ -21,7 +21,7 @@
       <b-btn variant="danger" size="sm" @click="clearData" :disabled="busy">清除本地数据</b-btn>
     </div>
     <div class="tags d-flex flex-wrap mt-4">
-      <tag v-for="tag in computeTags" :key="tag.id" :tag="tag" ref="tags" />
+      <tag v-for="tag in computeTags" :key="tag.id" :tag="tag" ref="tags" :category="computeCategory" />
     </div>
   </b-container>
 </template>
@@ -32,16 +32,21 @@ import parodies from '../assets/generated.parodies'
 import characters from '../assets/generated.characters'
 import Tag from './Tag.vue'
 
-// 仅先处理数量大于 10 的角色，因为太多属于画师自建角色
+const Tags = Object.values(tags)
+
+// 仅先处理数量大于 10 的作品，太多属于小众作品或属于画师自定作品
+const PrettyParodies = Object.values(parodies).filter((c) => c.count > 10)
+
+// 仅先处理数量大于 10 的角色，太多属于小众角色或属于画师自定角色
 const PrettyCharacters = Object.values(characters).filter((c) => c.count > 10)
 
-const Items = [...[tags, parodies].map((a) => {
-  const value = Object.values(a)
-  return {
-    value,
-    count: value.length
-  }
-}), {
+const Items = [{
+  value: Tags,
+  count: Tags.length
+}, {
+  value: PrettyParodies,
+  count: PrettyParodies.length
+}, {
   value: PrettyCharacters,
   count: PrettyCharacters.length
 }]
@@ -57,6 +62,8 @@ const Total = Items.reduce((pv, cv) => {
   pv += cv.count
   return pv
 }, 0)
+
+const Categories = ['tag', 'parody', 'character']
 
 const LS_PREFIX = 'nhentai-tags-'
 
@@ -84,6 +91,9 @@ export default {
       if (!this.sortByCountDesc)
         return Items[this.ref].value
       return [...Items[this.ref].value].sort((a, b) => b.count - a.count)
+    },
+    computeCategory () {
+      return Categories[this.ref]
     }
   },
   methods: {
