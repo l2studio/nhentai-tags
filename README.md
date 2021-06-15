@@ -32,6 +32,15 @@ console.log(tags['uncensored'].text) // 无修正
 console.log(tags['未存在的标签名']) // undefined
 ```
 
+## References
+
+`assets/nhentai-tags.json`
+
+CC BY-SA 3.0
+
+* Google
+* Wikipedia
+
 ## License
 
 Apache-2.0
