@@ -44,7 +44,8 @@ type GeneratedTag = {
       if (finished) {
         const quotesKey = k.includes('-') || k.includes(' ') || k.includes('.') || !isNaN(parseInt(k.charAt(0)))
         const key = quotesKey ? `'${k}'` : k
-        const val = `{ id: ${tag.id}, text: '${finished}' }`
+        const safelyFinished = finished.indexOf('\'') !== -1 ? finished.replace(/'/g, '\\\'') : finished
+        const val = `{ id: ${tag.id}, text: '${safelyFinished}' }`
         result.push(`${key}: ${val}`)
         transformed++
       }
