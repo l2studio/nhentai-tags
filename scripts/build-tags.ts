@@ -33,11 +33,11 @@ type GeneratedTag = {
   const parodies: Record<string, GeneratedTag> = require('../assets/generated.parodies').default
   const characters: Record<string, GeneratedTag>  = require('../assets/generated.characters').default
 
-  const lines: string[] = []
-  const transform = function (category: string, target: Record<string, GeneratedTag>, result: string[]) {
+  const transform = function (category: string, target: Record<string, GeneratedTag>) {
     debug(':transform category:', category)
-    let total = 0, transformed = 0
+    const result: string[] = []
     const start = Date.now()
+    let total = 0, transformed = 0
     for (const k in target) {
       const tag = target[k]
       const finished = tag ? data[tag.id] : undefined
@@ -55,27 +55,55 @@ type GeneratedTag = {
     debug(':transformed', time + 'ms')
     debug('  total:', total)
     debug('  finished:', transformed)
+    return result
   }
 
-  transform('tags', tags, lines)
-  transform('parodies', parodies, lines)
-  transform('characters', characters, lines)
+  const rTags = transform('tags', tags)
+  const rParodies = transform('parodies', parodies)
+  const rCharacters = transform('characters', characters)
 
   const date = new Date().toISOString()
   const code = `/*
  * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on ${date}
  */
 
-export type Tag = { id: number, text: string }
+export type Category = 'tags' | 'parodies' | 'characters'
+export type Entry = { id: number, text: string }
+export type EntryWithCategory = Entry & { category: Category }
 
-const tags: Record<string, Tag | undefined> = {
-  ${lines.join(',\n  ')}
+export type TagsTable = {
+  tags: Record<string, Entry | undefined>
+  parodies: Record<string, Entry | undefined>
+  characters: Record<string, Entry | undefined>
+  resolve (name: string): EntryWithCategory[] | undefined
+}
+
+const tagsTable: TagsTable = {
+  tags: {
+    ${rTags.join(',\n    ')}
+  },
+  parodies: {
+    ${rParodies.join(',\n    ')}
+  },
+  characters: {
+    ${rCharacters.join(',\n    ')}
+  },
+  resolve (name: string): EntryWithCategory[] | undefined {
+    const result: EntryWithCategory[] = []
+    const tag = this.tags[name]
+    const parody = this.parodies[name]
+    const character = this.characters[name]
+    tag && (result.push({ ...tag, category: 'tags' }))
+    parody && (result.push({ ...parody, category: 'parodies' }))
+    character && (result.push({ ...character, category: 'characters' }))
+    return result.length > 0 ? result : undefined
+  }
 }
 
 export const version = '${version}'
 export const date = new Date('${date}')
 
-export default tags
+export default tagsTable
 `
   fs.writeFileSync(outFile, code)
   debug('done')
