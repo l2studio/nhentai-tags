@@ -34,7 +34,7 @@ console.log(tags['未存在的标签名']) // undefined
 
 ## References
 
-`assets/nhentai-tags.json`
+[`/assets/nhentai-tags.json`](./assets/nhentai-tags.json)
 
 CC BY-SA 3.0
 
