@@ -33,9 +33,7 @@ import characters from '../assets/generated.characters'
 import Tag from './Tag.vue'
 
 const Tags = Object.values(tags)
-
-// 仅先处理数量大于 10 的作品，太多属于小众作品或属于画师自定作品
-const PrettyParodies = Object.values(parodies).filter((c) => c.count > 10)
+const Parodies = Object.values(parodies)
 
 // 仅先处理数量大于 10 的角色，太多属于小众角色或属于画师自定角色
 const PrettyCharacters = Object.values(characters).filter((c) => c.count > 10)
@@ -44,8 +42,8 @@ const Items = [{
   value: Tags,
   count: Tags.length
 }, {
-  value: PrettyParodies,
-  count: PrettyParodies.length
+  value: Parodies,
+  count: Parodies.length
 }, {
   value: PrettyCharacters,
   count: PrettyCharacters.length
