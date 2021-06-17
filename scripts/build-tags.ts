@@ -67,15 +67,17 @@ type GeneratedTag = {
  * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on ${date}
  */
 
-export type Category = 'tags' | 'parodies' | 'characters'
+export type Namespace = 'tags' | 'parodies' | 'characters' | 'languages' | 'categories'
 export type Entry = { id: number, text: string }
-export type EntryWithCategory = Entry & { category: Category }
+export type EntryWithNamespace = Entry & { namespace: Namespace }
 
 export type TagsTable = {
   tags: Record<string, Entry | undefined>
   parodies: Record<string, Entry | undefined>
   characters: Record<string, Entry | undefined>
-  resolve (name: string): EntryWithCategory[] | undefined
+  languages: Record<string, Entry | undefined>
+  categories: Record<string, Entry | undefined>
+  resolve (name: string): EntryWithNamespace[] | undefined
 }
 
 const tagsTable: TagsTable = {
@@ -88,14 +90,36 @@ const tagsTable: TagsTable = {
   characters: {
     ${rCharacters.join(',\n    ')}
   },
-  resolve (name: string): EntryWithCategory[] | undefined {
-    const result: EntryWithCategory[] = []
+  languages: {
+    chinese: { id: 29963, text: '中文' },
+    english: { id: 12227, text: '英文' },
+    japanese: { id: 6346, text: '日文' },
+    rewrite: { id: 33252, text: '重写' },
+    speechless: { id: 33680, text: '无言' },
+    'text-cleaned': { id: 33705, text: '文字清除' },
+    translated: { id: 17249, text: '翻译' }
+  },
+  categories: {
+    artistcg: { id: 36320, text: '画师CG' },
+    doujinshi: { id: 33172, text: '同人志' },
+    imageset: { id: 34191, text: '图片集' },
+    manga: { id: 33173, text: '漫画' },
+    misc: { id: 97152, text: '其他' },
+    'non-h': { id: 34065, text: '无H' },
+    western: { id: 34125, text: '西方' }
+  },
+  resolve (name: string): EntryWithNamespace[] | undefined {
+    const result: EntryWithNamespace[] = []
     const tag = this.tags[name]
     const parody = this.parodies[name]
     const character = this.characters[name]
-    tag && (result.push({ ...tag, category: 'tags' }))
-    parody && (result.push({ ...parody, category: 'parodies' }))
-    character && (result.push({ ...character, category: 'characters' }))
+    const language = this.languages[name]
+    const category = this.categories[name]
+    tag && (result.push({ ...tag, namespace: 'tags' }))
+    parody && (result.push({ ...parody, namespace: 'parodies' }))
+    character && (result.push({ ...character, namespace: 'characters' }))
+    language && (result.push({ ...language, namespace: 'languages' }))
+    category && (result.push({ ...category, namespace: 'categories' }))
     return result.length > 0 ? result : undefined
   }
 }
