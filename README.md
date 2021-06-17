@@ -52,6 +52,18 @@ CC BY-SA 3.0
 * Google
 * Wikipedia
 
+## Translation
+
+翻译进度:
+
+* tags: `~90%`
+  * 大部分标签
+  * 忽略画师名或自建标签
+* parodies: `~50%`
+  * 本数量大于 10 的
+* characters: `~20%`
+  * 本数量大于 100 的
+
 ## License
 
 Apache-2.0
