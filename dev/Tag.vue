@@ -48,7 +48,8 @@ export default {
   mounted () { this.reload() },
   methods: {
     submit () {
-      window.localStorage.setItem(LS_PREFIX + this.tag.id, this.translate)
+      if (this.translate) window.localStorage.setItem(LS_PREFIX + this.tag.id, this.translate)
+      else window.localStorage.removeItem(LS_PREFIX + this.tag.id)
       this.edit = false
     },
     reload () {
