@@ -7,13 +7,14 @@
          'text-indigo': translate && translate.endsWith('^'), // 原标签语法或拼写错误，或重复单词
          'tag-low': tag.count <= 10 }">                     <!-- 低优先度或略过，大部分为画师名，自建标签 -->
     <template v-if="!edit">
-      <a v-if="!translate" style="color: inherit; text-decoration: underline"
-         :href="'https://nhentai.net/' + category + '/' + tag.text.replace(/\s/g, '-')" target="_blank">
-        {{ translate || tag.text }}
-      </a>
-      <span v-else>{{ translate || tag.text }}</span>
+      <span>{{ translate || tag.text }}</span>
       <b-icon-pencil-square class="i i-edit" @click="edit = true" scale="1.3"/>
-      <a v-if="category !== 'tag'" class="i i-wiki" :href="'https://www.google.com/search?q=' + tag.text" target="_blank"><b-icon-globe scale="1.3"/></a>
+      <a v-if="category !== 'tag'" class="i i-wiki" :href="'https://www.google.com/search?q=' + tag.text" target="_blank">
+        <b-icon-globe scale="1.3"/>
+      </a>
+      <a v-if="category !== 'tag'" class="i i-nh" :href="'https://nhentai.net/' + category + '/' + tag.text.replace(/\s/g, '-').replace(/\./g, '')" target="_blank">
+        <b-icon-tag-fill scale="1.3"/>
+      </a>
       <b-icon-check-circle-fill v-if="category !== 'tag'" class="i i-check" :class="{ 'checked': translateChecked }" @click="translateCheck" scale="1.3"/>
     </template>
     <template v-else>
@@ -80,6 +81,11 @@ export default {
 .tag .i.i-wiki {
   top: -7px;
   left: 16px;
+  color: var(--indigo);
+}
+.tag .i.i-nh {
+  bottom: -3px;
+  right: -3px;
   color: var(--indigo);
 }
 .tag .i.i-check {
