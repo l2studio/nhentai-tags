@@ -5,7 +5,7 @@
          'bg-success text-white tag-translated': !!translate && !edit,
          'bg-danger text-white': translate && translate.endsWith('*'), // 未确认，多重翻译，歧义
          'text-indigo': translate && translate.endsWith('^'), // 原标签语法或拼写错误，或重复单词
-         'tag-low': tag.count <= 10 }">                     <!-- 低优先度或略过，大部分为画师名，自建标签 -->
+         'tag-low': tag.count <= 10 || (category === 'character' && tag.count < 100) }"> <!-- 低优先度或略过，大部分为画师名，自建标签 -->
     <template v-if="!edit">
       <span>{{ translate || tag.text }}</span>
       <b-icon-pencil-square class="i i-edit" @click="edit = true" scale="1.3"/>
