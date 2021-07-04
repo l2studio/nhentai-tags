@@ -97,7 +97,7 @@ const tagsTable: TagsTable = {
     rewrite: { id: 33252, text: '重写' },
     speechless: { id: 33680, text: '无言' },
     'text-cleaned': { id: 33705, text: '文字清除' },
-    translated: { id: 17249, text: '翻译' }
+    translated: { id: 17249, text: '已翻译' }
   },
   categories: {
     artistcg: { id: 36320, text: '画师CG' },
