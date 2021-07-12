@@ -91,22 +91,22 @@ const tagsTable: TagsTable = {
     ${rCharacters.join(',\n    ')}
   },
   languages: {
-    chinese: { id: 29963, text: '中文' },
-    english: { id: 12227, text: '英文' },
     japanese: { id: 6346, text: '日文' },
+    translated: { id: 17249, text: '已翻译' },
+    english: { id: 12227, text: '英文' },
+    chinese: { id: 29963, text: '中文' },
     rewrite: { id: 33252, text: '重写' },
     speechless: { id: 33680, text: '无言' },
-    'text-cleaned': { id: 33705, text: '文字清除' },
-    translated: { id: 17249, text: '已翻译' }
+    'text-cleaned': { id: 33705, text: '文字清除' }
   },
   categories: {
-    artistcg: { id: 36320, text: '画师CG' },
     doujinshi: { id: 33172, text: '同人志' },
-    imageset: { id: 34191, text: '图片集' },
     manga: { id: 33173, text: '漫画' },
-    misc: { id: 97152, text: '其他' },
     'non-h': { id: 34065, text: '无H' },
-    western: { id: 34125, text: '西方' }
+    western: { id: 34125, text: '西方' },
+    imageset: { id: 34191, text: '图片集' },
+    artistcg: { id: 36320, text: '画师CG' },
+    misc: { id: 97152, text: '其他' }
   },
   resolve (name: string): EntryWithNamespace[] | undefined {
     const result: EntryWithNamespace[] = []
