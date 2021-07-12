@@ -96,7 +96,11 @@ async function fetchAll (category: Category): Promise<{ category: Category, tags
  * @code style: Standard JS
  */
 
-function generateModuleCode (category: Category, tags: Tag[]): string {
+function generateModuleCode (category: Category, tags: Tag[], sortTagsByCountDesc?: boolean): string {
+  if (sortTagsByCountDesc === true) {
+    debug(':sort tags...')
+    tags = tags.sort((a, b) => a.count > b.count ? -1 : b.count > a.count ? 1 : 0)
+  }
   debug(':generate module code:', category)
   const date = new Date().toISOString()
   const lines = tags.map(({ id, name, count }) => {
@@ -127,7 +131,7 @@ fs.existsSync(assetsDir) || fs.mkdirSync(assetsDir)
     debug(':sync category:', category)
     const { tags } = await fetchAll(category)
     const filename = 'generated.' + category + '.ts'
-    const code = generateModuleCode(category, tags)
+    const code = generateModuleCode(category, tags, true)
     fs.writeFileSync(path.resolve(assetsDir, filename), code)
   }
 })().catch((err) => {
