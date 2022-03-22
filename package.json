@@ -1,6 +1,6 @@
 {
   "name": "@l2studio/nhentai-tags",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A tags chinese database of nhentai.net",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
