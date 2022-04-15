@@ -25,9 +25,9 @@ type Tag = {
   count: number
 }
 
-type Category = 'tags' | 'characters' | 'parodies'
+type Category = 'tags' | 'artists' | 'characters' | 'parodies' | 'groups'
 
-const Categories: Category[] = ['tags', 'characters', 'parodies']
+const Categories: Category[] = ['tags', 'artists', 'characters', 'parodies', 'groups']
 
 type ParsedResult<T extends Category> = {
   category: T
