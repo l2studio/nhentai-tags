@@ -11,7 +11,7 @@
     "node": ">=12.0"
   },
   "scripts": {
-    "clean": "rimraf build dist",
+    "clean": "rimraf dist",
     "dev": "vite --port=8091",
     "sync:tags": "cross-env DEBUG='lgou2w:*' ts-node -T -P tsconfig.json scripts/sync.ts",
     "build:tags": "cross-env DEBUG='lgou2w:*' ts-node -T -P tsconfig.json scripts/build.ts",

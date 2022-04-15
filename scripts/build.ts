@@ -9,10 +9,13 @@ const buildDir = path.resolve(__dirname, '..', 'build')
 fs.existsSync(assetsDir) || fs.mkdirSync(assetsDir)
 fs.existsSync(buildDir) || fs.mkdirSync(buildDir)
 
-const dataFile = path.resolve(assetsDir, 'nhentai-tags.json')
+let dataFile = path.resolve(assetsDir, 'nhentai-tags.json')
 if (!fs.existsSync(dataFile)) {
   console.error(new Error('未找到导出的数据文件：' + dataFile))
   process.exit(1)
+}
+if (fs.existsSync(path.resolve(buildDir, 'nhentai-tags.json'))) {
+  dataFile = path.resolve(buildDir, 'nhentai-tags.json')
 }
 
 type GeneratedTag = {
@@ -30,8 +33,10 @@ type GeneratedTag = {
   const data = JSON.parse(fs.readFileSync(dataFile, { encoding: 'utf-8' })) as Record<string, string>
 
   const tags: Record<string, GeneratedTag> = require('../assets/generated.tags').default
+  const artists: Record<string, GeneratedTag> = require('../assets/generated.artists').default
   const parodies: Record<string, GeneratedTag> = require('../assets/generated.parodies').default
   const characters: Record<string, GeneratedTag>  = require('../assets/generated.characters').default
+  const groups: Record<string, GeneratedTag> = require('../assets/generated.groups').default
 
   const transform = function (category: string, target: Record<string, GeneratedTag>) {
     debug(':transform category:', category)
@@ -59,22 +64,26 @@ type GeneratedTag = {
   }
 
   const rTags = transform('tags', tags)
+  const rArtists = transform('artists', artists)
   const rParodies = transform('parodies', parodies)
   const rCharacters = transform('characters', characters)
+  const rGroups = transform('groups', groups)
 
   const date = new Date().toISOString()
   const code = `/*
  * Built by https://github.com/l2studio/nhentai-tags and lgou2w's on ${date}
  */
 
-export type Namespace = 'tags' | 'parodies' | 'characters' | 'languages' | 'categories'
+export type Namespace = 'tags' | 'artists' | 'parodies' | 'characters' | 'groups' | 'languages' | 'categories'
 export type Entry = { id: number, text: string }
 export type EntryWithNamespace = Entry & { namespace: Namespace }
 
 export type TagsTable = {
   tags: Record<string, Entry | undefined>
+  artists: Record<string, Entry | undefined>
   parodies: Record<string, Entry | undefined>
   characters: Record<string, Entry | undefined>
+  groups: Record<string, Entry | undefined>
   languages: Record<string, Entry | undefined>
   categories: Record<string, Entry | undefined>
   resolve (name: string): EntryWithNamespace[] | undefined
@@ -84,11 +93,17 @@ const tagsTable: TagsTable = {
   tags: {
     ${rTags.join(',\n    ')}
   },
+  artists: {
+    ${rArtists.join(',\n    ')}
+  },
   parodies: {
     ${rParodies.join(',\n    ')}
   },
   characters: {
     ${rCharacters.join(',\n    ')}
+  },
+  groups: {
+    ${rGroups.join(',\n    ')}
   },
   languages: {
     japanese: { id: 6346, text: '日文' },
@@ -111,15 +126,19 @@ const tagsTable: TagsTable = {
   resolve (name: string): EntryWithNamespace[] | undefined {
     const result: EntryWithNamespace[] = []
     const tag = this.tags[name]
+    const artist = this.artists[name]
     const parody = this.parodies[name]
     const character = this.characters[name]
+    const group = this.groups[name]
     const language = this.languages[name]
     const category = this.categories[name]
     tag && (result.push({ ...tag, namespace: 'tags' }))
+    artist && (result.push({ ...artist, namespace: 'artists' }))
     parody && (result.push({ ...parody, namespace: 'parodies' }))
     character && (result.push({ ...character, namespace: 'characters' }))
     language && (result.push({ ...language, namespace: 'languages' }))
     category && (result.push({ ...category, namespace: 'categories' }))
+    group && (result.push({ ...group, namespace: 'groups' }))
     return result.length > 0 ? result : undefined
   }
 }
