@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
-import { createVuePlugin } from 'vite-plugin-vue2'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [
-    createVuePlugin()
+    react()
   ]
 })
