@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.app {
+  margin: 1rem;
+  --primary: #1976d2;
+  --success: #28a745;
+  --warning: #fd7e14;
+  --error: #dc3545;
+  --indigo: #6610f2;
+}
+
+.app > * {
+  margin: 1rem 0.5rem;
+}
+
+.app h1 {
+  font-size: 1.5rem;
+}
+
+.app .actions button {
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 3px;
+  color: white;
+}
+
+.app .actions button.import {
+  position: relative;
+  background-color: var(--primary);
+}
+
+.app .actions button.import input {
+  cursor: pointer;
+  min-height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.app .actions button.export {
+  background-color: var(--success);
+}
+
+.app .actions button.clean {
+  background-color: var(--error);
+}
+
+.app .handler {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.app .handler .tag {
+  display: block;
+  position: relative;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.725rem;
+}
+
+.app .handler .tag:not(.editing) {
+  border: 1px solid #ccc;
+  padding: 0.5rem 1.5rem;
+}
+
+.app .handler .tag input {
+  margin: 0;
+  padding: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.i.i-btn {
+  position: absolute;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  display: block;
+}
+
+.app .handler .tag .i.i-btn.edit {
+  right: -0.3rem;
+  top: -0.3rem;
+  color: var(--warning);
+}
+
+.app .handler .tag .i.i-btn.google {
+  top: -0.3rem;
+  left: -0.3rem;
+  color: var(--indigo);
+}
+
+.app .handler .tag .i.i-btn.nhentai {
+  bottom: -0.3rem;
+  left: -0.3rem;
+  color: var(--indigo);
+}
+
+.app .handler .tag.translated {
+  background-color: var(--success);
+  color: white;
+}
+
+.app .handler .tag.translated::before {
+  content: attr(data-text);
+  position: absolute;
+  display: flex;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--primary);
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0.725rem;
+}
+
+.app .handler .tag.translated:hover::before {
+  visibility: visible;
+}
